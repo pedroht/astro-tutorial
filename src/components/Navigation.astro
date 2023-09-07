@@ -1,8 +1,62 @@
 ---
+import { cn } from "@/lib/utils";
+import ThemeIcon from "./ThemeIcon.astro";
+const pathname = Astro.url.pathname;
 ---
-<div class="nav-links">
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
-  <a href="/tags/">Tags</a>
+<div class="flex">
+  <nav class="w-full flex items-center justify-center space-x-6 text-sm font-medium">
+    <a
+    href="/"
+    class={cn(
+      "transition-colors hover:text-foreground/80",
+        pathname === "/" ? "text-foreground" : "text-foreground/60"
+      )}
+    >
+      Home
+    </a>
+    <a
+      href="/about"
+      class={cn(
+        "transition-colors hover:text-foreground/80",
+        pathname?.startsWith("/about")
+          ? "text-foreground"
+          : "text-foreground/60"
+      )}
+    >
+      About me
+    </a>
+    <a
+      href="/blog"
+      class={cn(
+        "transition-colors hover:text-foreground/80",
+        pathname?.startsWith("/blog")
+          ? "text-foreground"
+          : "text-foreground/60"
+      )}
+    >
+      Blog
+    </a>
+    <a
+      href="/tags"
+      class={cn(
+        "transition-colors hover:text-foreground/80",
+        pathname?.startsWith("/tags")
+          ? "text-foreground"
+          : "text-foreground/60"
+      )}
+    >
+      Tags
+    </a>
+    <a
+      href="https://github.com/pedroht"
+      class={cn(
+        "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
+      )}
+    >
+      GitHub
+    </a>
+
+    <ThemeIcon client:load />
+  </nav>
 </div>
+
